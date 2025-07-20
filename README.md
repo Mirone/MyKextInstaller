@@ -1,10 +1,14 @@
-# MyKextInstaller
+<p align="center">
+  <img alt="MyKextInstaller" src="https://i.ibb.co/JFMXDWyC/My-Kext-Installer-Icon.png" width="200">
+</p>
+<h3 align="center">MyKextInstaller</h3>
+
 
 **MyKextInstaller** is an application designed to simplify the manual installation of  **kernel extensions (kexts)**  on macOS. While initially created to restore audio on system versions where original support was removed (such as macOS Tahoe Beta 2), it has evolved into a versatile and practical solution for general kext management.
 
 This application automates critical tasks like copying files to the appropriate directories, configuring permissions, and updating system caches. This eliminates the complexity of the manual process, reduces reliance on alternative tools, and gives users more autonomy over the kexts they wish to install.
 
-----------
+---
 
 ### How to use MyKextInstaller to restore audio?
 
