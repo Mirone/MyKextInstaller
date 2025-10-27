@@ -7,6 +7,8 @@
 
 This application automates critical tasks like copying files to the appropriate directories, configuring permissions, and updating system caches. This eliminates the complexity of the manual process, reduces reliance on alternative tools, and gives users more autonomy over the kexts they wish to install.
 
+[Support this project](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=K4M7MJFLXUU6Y&ssrt=1753621430494)
+
 ---
 
 ### How to use MyKextInstaller to restore audio?
@@ -19,7 +21,7 @@ To restore audio on your macOS system using MyKextInstaller, follow these steps:
         
 2.  **Download AppleHDA.kext:**
     
-    -   Download  [AppleHDA](https://github.com/Mirone/MyKextInstaller/releases/latest/download/AppleHDA.zip). You can use the macOS Sequoia version or earlier versions.
+    -   Download  [AppleHDA](https://github.com/Mirone/MyKextInstaller/releases/latest/download/AppleHDA.kext.zip). You can use the macOS Sequoia version or earlier versions.
        
     -   Alternatively, you can find  `AppleHDA.kext`  at the following path:  `/Library/Developer/KDKs/KDK_26.0_25A5279m.kdk/System/Library/Extensions`.
     
