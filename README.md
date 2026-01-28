@@ -57,7 +57,101 @@ To restore audio on your macOS system using MyKextInstaller, follow these steps:
 
 -   Any instructions related to disabling SIP in Recovery Mode apply to systems where SIP is still enabled in  `config.plist`.
 
-## Opening App
+---
+
+### Security
+
+**MyKextInstaller** uses a Helper Tool to perform tasks that require elevated privileges (root).
+
+* **Versions 1.4 to 1.6**: The helper was installed using **SMJobBless**, ensuring compatibility with earlier versions of macOS such as Big Sur and Monterey.
+* **Starting with version 1.7**: It began using the **SMAppService** API, the modern approach recommended by Apple for managing auxiliary services.
+    * This migration aligns the application with the security architecture of **macOS 13 Ventura** or later.
+
+---
+
+### Is it safe to use a Helper Tool?
+
+**Yes**, when it is part of a trustworthy application.  
+**MyKextInstaller** meets the main security requirements defined by Apple:
+
+* It uses an official Apple API (**SMAppService**).
+* The **Helper Tool** is signed with the same **Developer ID** as the main application.
+* The App is **notarized by Apple**.
+* Installation and execution of the helper are controlled by **macOS (launchd)**.
+* The **Helper Tool** can only be installed with **explicit user authorization**.
+* The execution scope of the helper is limited to the tasks defined by the application.
+
+---
+
+### Helper Tool scope
+
+The Helper Tool is used exclusively to perform operations that require elevated privileges, such as:
+
+* Kext installation
+* Kext removal
+* Rebuilding system caches
+* Restoring system snapshots
+* Mounting partitions
+
 > [!IMPORTANT]
-> MyKextInstaller is **notarized by Apple**, which means it passes Gatekeeper checks and will open normally 
-> without requiring additional permissions or Terminal commands.
+> The Helper Tool is **not authorized nor implemented** to perform any task outside the scope of MyKextInstaller.
+
+---
+
+### Can the Helper Tool spy on the user or perform malicious actions?
+
+Technically, any software can be malicious. However:
+
+* Using **SMAppService** does not grant extra privileges by itself.
+* It does not bypass macOS security mechanisms.
+* The helper does not have automatic access to user data.
+* Any sensitive action remains subject to system security policies.
+
+---
+
+### How it works in practice?
+
+* **SMAppService** registers a Helper Tool (Launch Daemon) with the system.
+* This helper is installed with elevated privileges (root), but it can only be started when requested by the main application (MyKextInstaller).
+* **launchd** manages the execution of the helper, ensuring it runs on demand and within the authorized scope.
+* The helper does not remain active all the time. It only runs when needed.
+
+---
+
+### Why does SMJobBless show the developer name in system notifications while SMAppService shows the app name?
+
+#### SMJobBless
+* **Context**: It was the legacy API used to install Privileged Helper Tools.
+* **Displayed identity**: In system notifications, the **developer name** associated with the Developer ID was shown.
+* **Reason**: The focus was on ensuring the tool was signed by a verified developer. The system highlighted the legal entity responsible for the code.
+  * **Message displayed by SMJobBless**:
+	  - Background app activity
+The software from “Developer Name” can be run in the background. Manage background activity in Login Items and Extensions.
+
+#### SMAppService
+* **Context**: It is the modern API that replaces SMJobBless for service registration.
+* **Displayed identity**: System notifications now show the **application name** requesting the service.
+* **Reason**: Apple shifted to an app-centric user experience.
+    * Users recognize the **app** they are interacting with more easily than the developer's registered name.
+    * This makes messages clearer for example: 
+    * **Message displayed by SMAppService**:
+		- Background app activity
+The MyKextInstaller app can run in the background for all users.
+Do you want to allow this?
+    * The link to the Developer ID remains active for internal validation, but the UI prioritizes the app's identity.
+
+### In summary
+
+- When using **SMJobBless**, the system displays a prompt asking for the user’s password to install the *Helper Tool*.  
+- Once the installation is authorized, the application is automatically added to **System Settings > Login Items**, becoming enabled without any further action required.  
+- With **SMAppService**, however, after installation the application is **not automatically enabled** in the Login Items. In this case, **the user must activate it manually.**  
+
+
+---
+
+### Apple Developer Documentation
+
+* **Service Management Framework** – [Overview of the framework](https://developer.apple.com/documentation/servicemanagement)
+* **SMJobBless** – [Legacy function for privileged helpers](https://developer.apple.com/documentation/servicemanagement/smjobbless%28_%3A_%3A_%3A_%3A%29)
+* **SMAppService** – [Modern API for service registration](https://developer.apple.com/documentation/servicemanagement/smappservice)
+* **Migration Guide** – [Updating to the New Service Management API](https://developer.apple.com/documentation/ServiceManagement/updating-your-app-package-installer-to-use-the-new-service-management-api)
