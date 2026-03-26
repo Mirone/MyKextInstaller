@@ -9,6 +9,14 @@ This application automates critical tasks like copying files to the appropriate 
 
 [Support this project](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=K4M7MJFLXUU6Y&ssrt=1753621430494)
 
+<p align="center">
+
+<img src="https://img.shields.io/github/stars/Mirone/MyKextInstaller?style=flat&label=Stars&color=64748b" />
+<img src="https://img.shields.io/github/downloads/Mirone/MyKextInstaller/total?style=flat&label=Downloads&color=64748b" />
+<img src="https://img.shields.io/github/v/release/Mirone/MyKextInstaller?style=flat&label=Version&color=64748b" />
+
+</p>
+
 ---
 
 ### How to use MyKextInstaller to restore audio?
