@@ -57,7 +57,10 @@ To restore audio on your macOS system using MyKextInstaller, follow these steps:
 7.  **Restart your system:**
     
     -   After installing the kext, restart your system and check if the audio is working correctly.
-        
+    
+
+>[!IMPORTANT]
+>**Alternative for Audio Restoration:** On supported systems, [SimpleHDA](https://github.com/laobamac/SimpleHDA/releases) restores AppleHDA through OpenCore injection, allowing AppleALC to work without root patches. **MyKextInstaller** remains a useful tool for manually installing and managing kernel extensions (kexts) in macOS, particularly when restoring removed system functionality or performing specific tests.
 
 ----------
 
