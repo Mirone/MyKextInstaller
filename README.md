@@ -7,8 +7,6 @@
 
 This application automates critical tasks like copying files to the appropriate directories, configuring permissions, and updating system caches. This eliminates the complexity of the manual process, reduces reliance on alternative tools, and gives users more autonomy over the kexts they wish to install.
 
-[Support this project](https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=K4M7MJFLXUU6Y&ssrt=1753621430494)
-
 <p align="center">
 
 <img src="https://img.shields.io/github/stars/Mirone/MyKextInstaller?style=flat&label=Stars&color=64748b" />
